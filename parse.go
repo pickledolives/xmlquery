@@ -32,7 +32,11 @@ func LoadURL(url string) (*Node, error) {
 
 // Parse returns the parse tree for the XML from the given Reader.
 func Parse(r io.Reader) (*Node, error) {
-	return ParseWithOptions(r, ParserOptions{})
+	return ParseWithOptions(r, ParserOptions{
+		Decoder: &xmlquery.DecoderOptions{
+			Strict: false,
+		},
+	})
 }
 
 // ParseWithOptions is like parse, but with custom options
